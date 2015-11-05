@@ -1,0 +1,15 @@
+program TelSprav;
+
+uses
+  Forms,
+  TelSpravMain in 'TelSpravMain.pas' {fTelSprav},
+  TelDM in 'TelDM.pas' {dmTel: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TfTelSprav, fTelSprav);
+  Application.CreateForm(TdmTel, dmTel);
+  Application.Run;
+end.
