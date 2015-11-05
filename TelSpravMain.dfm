@@ -1,8 +1,9 @@
 object fTelSprav: TfTelSprav
   Left = 319
   Top = 242
-  Width = 1129
+  Width = 1132
   Height = 485
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = #1058#1077#1083#1077#1092#1086#1085#1085#1099#1081' '#1089#1087#1088#1072#1074#1086#1095#1085#1080#1082
   Color = clBtnFace
   Font.Charset = RUSSIAN_CHARSET
@@ -31,7 +32,7 @@ object fTelSprav: TfTelSprav
   object dbgTel: TDBGrid
     Left = 0
     Top = 0
-    Width = 1113
+    Width = 1116
     Height = 337
     Align = alTop
     DataSource = dmTel.dsTel
@@ -313,7 +314,7 @@ object fTelSprav: TfTelSprav
   end
   object MainMenu1: TMainMenu
     Left = 1080
-    Top = 400
+    Top = 376
     object nFile: TMenuItem
       Caption = #1060#1072#1081#1083
     end

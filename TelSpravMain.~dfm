@@ -2,7 +2,7 @@ object fTelSprav: TfTelSprav
   Left = 319
   Top = 242
   Width = 1129
-  Height = 697
+  Height = 485
   Caption = #1058#1077#1083#1077#1092#1086#1085#1085#1099#1081' '#1089#1087#1088#1072#1074#1086#1095#1085#1080#1082
   Color = clBtnFace
   Font.Charset = RUSSIAN_CHARSET
@@ -310,33 +310,6 @@ object fTelSprav: TfTelSprav
     Caption = #1048#1084#1103' '#1082#1086#1084#1087#1100#1102#1090#1077#1088#1072
     TabOrder = 14
     OnClick = cebNameCompClick
-  end
-  object Memo1: TMemo
-    Left = 16
-    Top = 424
-    Width = 185
-    Height = 145
-    Lines.Strings = (
-      'Memo1')
-    TabOrder = 15
-  end
-  object Button1: TButton
-    Left = 224
-    Top = 440
-    Width = 75
-    Height = 25
-    Caption = #1086#1095#1080#1089#1090#1080#1090#1100
-    TabOrder = 16
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 224
-    Top = 472
-    Width = 75
-    Height = 25
-    Caption = #1074#1099#1087#1086#1083#1085#1080#1090#1100
-    TabOrder = 17
-    OnClick = Button2Click
   end
   object MainMenu1: TMainMenu
     Left = 1080
