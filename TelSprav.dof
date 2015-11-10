@@ -95,7 +95,7 @@ UnitOutputDir=
 PackageDLLOutputDir=
 PackageDCPOutputDir=
 SearchPath=
-Packages=
+Packages=vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;inetdb;bdertl;vcldbx;webdsnap;websnap;adortl;ibxpress;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;IntrawebDB_50_70;Intraweb_50_70;Rave50CLX;Rave50VCL;dclOfficeXP;dxBarD7;dxComnD7;dxBarDBNavD7;dxBarExtItemsD7;dxBarExtDBItemsD7;dxsbD7;dxmdsD7;dxdbtrD7;dxtrmdD7;dxFlowChartD7;dxForumLibD7;dxEdtrD7;dxInsD7;dxDBEdD7;dxObjInsD7;dxMasterViewD7;dxorgcD7;dxdborD7;dxPageControlD7;cxLibraryVCLD7;cxEditorsVCLD7;cxGridVCLD7;dxThemeD7;cxDataD7;cxGridUtilsVCLD7;RxCtl7;RxDB7;RxBDE7;skinpackD7;BSFD7
 Conditionals=
 DebugSourceDirs=
 UsePackages=0
@@ -134,3 +134,5 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
+[Excluded Packages]
+C:\Program Files (x86)\Developer Express Inc\ExpressInspector\Delphi 7\Lib\dcldxExRwD7.bpl=ExpressInspector Extended Rows

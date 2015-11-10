@@ -4,12 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, Grids, DBGrids, Mask, StdCtrls;
+  Dialogs, Menus, Grids, DBGrids, Mask, StdCtrls, ImgList;
 
 type
   TfTelSprav = class(TForm)
     dbgTel: TDBGrid;
-    MainMenu1: TMainMenu;
+    mmTel: TMainMenu;
     nFile: TMenuItem;
     nSprav: TMenuItem;
     nAdd: TMenuItem;
@@ -30,6 +30,7 @@ type
     cebIP: TCheckBox;
     cebNameComp: TCheckBox;
     lKolZap: TLabel;
+    ilTel: TImageList;
     procedure dbgTelKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure nAddClick(Sender: TObject);
