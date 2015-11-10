@@ -78,40 +78,40 @@ procedure TfNewTel.bbSaveClick(Sender: TObject);
 begin
   if fTelSprav.NewEdit=true then
     begin
-      with dmTel do
+      with dmTel.adoqTel do
         begin
-          adotTel.Insert;
-          adotTel.FieldByName('Фамилия').Value:=eFam.Text;
-          adotTel.FieldByName('Имя').Value:=eIm.Text;
-          adotTel.FieldByName('Отчество').Value:=eOt.Text;
-          adotTel.FieldByName('Отделение').Value:=eDepart.Text;
-          adotTel.FieldByName('Должность').Value:=ePost.Text;
-          adotTel.FieldByName('Телефон').Value:=meTel.Text;
-          adotTel.FieldByName('IP').Value:=meIP.Text;
-          adotTel.FieldByName('Имя компьютера').Value:=eNameComp.Text;
-          adotTel.FieldByName('email\login').Value:=eEmail.Text;
-          adotTel.FieldByName('password').Value:=ePassword.Text;
-          adotTel.FieldByName('Примечание').Value:=eText.Text;
-          adotTel.Post;
+          Insert;
+          FieldByName('Фамилия').Value:=eFam.Text;
+          FieldByName('Имя').Value:=eIm.Text;
+          FieldByName('Отчество').Value:=eOt.Text;
+          FieldByName('Отделение').Value:=eDepart.Text;
+          FieldByName('Должность').Value:=ePost.Text;
+          FieldByName('Телефон').Value:=meTel.Text;
+          FieldByName('IP').Value:=meIP.Text;
+          FieldByName('Имя компьютера').Value:=eNameComp.Text;
+          FieldByName('email\login').Value:=eEmail.Text;
+          FieldByName('password').Value:=ePassword.Text;
+          FieldByName('Примечание').Value:=eText.Text;
+          Post;
         end;
     end
   else
     begin
-      with dmTel do
+      with dmTel.adoqTel do
         begin
-          adotTel.Edit;
-          adotTel.FieldByName('Фамилия').Value:=eFam.Text;
-          adotTel.FieldByName('Имя').Value:=eIm.Text;
-          adotTel.FieldByName('Отчество').Value:=eOt.Text;
-          adotTel.FieldByName('Отделение').Value:=eDepart.Text;
-          adotTel.FieldByName('Должность').Value:=ePost.Text;
-          adotTel.FieldByName('Телефон').Value:=meTel.Text;
-          adotTel.FieldByName('IP').Value:=meIP.Text;
-          adotTel.FieldByName('Имя компьютера').Value:=eNameComp.Text;
-          adotTel.FieldByName('email\login').Value:=eEmail.Text;
-          adotTel.FieldByName('password').Value:=ePassword.Text;
-          adotTel.FieldByName('Примечание').Value:=eText.Text;
-          adotTel.Post;
+          Edit;
+          FieldByName('Фамилия').Value:=eFam.Text;
+          FieldByName('Имя').Value:=eIm.Text;
+          FieldByName('Отчество').Value:=eOt.Text;
+          FieldByName('Отделение').Value:=eDepart.Text;
+          FieldByName('Должность').Value:=ePost.Text;
+          FieldByName('Телефон').Value:=meTel.Text;
+          FieldByName('IP').Value:=meIP.Text;
+          FieldByName('Имя компьютера').Value:=eNameComp.Text;
+          FieldByName('email\login').Value:=eEmail.Text;
+          FieldByName('password').Value:=ePassword.Text;
+          FieldByName('Примечание').Value:=eText.Text;
+          Post;
         end;
     end;
   fTelSprav.Refresh;
@@ -222,6 +222,7 @@ begin
     NewData
   else
     LoadData;
+  eFam.SetFocus;
 end;
 
 procedure TfNewTel.NewData;
@@ -241,19 +242,19 @@ end;
 
 procedure TfNewTel.LoadData;
 begin
-  with dmTel do
+  with dmTel.adoqTel do
     begin
-      eFam.Text:=adotTel.FieldByName('Фамилия').AsString;
-      eIm.Text:=adotTel.FieldByName('Имя').AsString;
-      eOt.Text:=adotTel.FieldByName('Отчество').AsString;
-      eDepart.Text:=adotTel.FieldByName('Отделение').AsString;
-      ePost.Text:=adotTel.FieldByName('Должность').AsString;
-      eText.Text:=adotTel.FieldByName('Примечание').AsString;
-      meTel.Text:=adotTel.FieldByName('Телефон').AsString;
-      meIP.Text:=adotTel.FieldByName('IP').AsString;
-      eEmail.Text:=adotTel.FieldByName('email\login').AsString;
-      ePassword.Text:=adotTel.FieldByName('password').AsString;
-      eNameComp.Text:=adotTel.FieldByName('Имя компьютера').AsString;
+      eFam.Text:=FieldByName('Фамилия').AsString;
+      eIm.Text:=FieldByName('Имя').AsString;
+      eOt.Text:=FieldByName('Отчество').AsString;
+      eDepart.Text:=FieldByName('Отделение').AsString;
+      ePost.Text:=FieldByName('Должность').AsString;
+      eText.Text:=FieldByName('Примечание').AsString;
+      meTel.Text:=FieldByName('Телефон').AsString;
+      meIP.Text:=FieldByName('IP').AsString;
+      eEmail.Text:=FieldByName('email\login').AsString;
+      ePassword.Text:=FieldByName('password').AsString;
+      eNameComp.Text:=FieldByName('Имя компьютера').AsString;
     end;
 end;
 

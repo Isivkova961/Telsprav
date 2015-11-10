@@ -86,8 +86,14 @@ begin
           FieldByName('Отчество').Value:=eOt.Text;
           FieldByName('Отделение').Value:=eDepart.Text;
           FieldByName('Должность').Value:=ePost.Text;
-          FieldByName('Телефон').Value:=meTel.Text;
-          FieldByName('IP').Value:=meIP.Text;
+          if meTel.Text<>' -  -  ' then
+            FieldByName('Телефон').Value:=meTel.Text
+          else
+            FieldByName('Телефон').Value:='';
+          if meIP.Text<>'  .  .   .   ' then
+            FieldByName('IP').Value:=meIP.Text
+          else
+            FieldByName('IP').Value:='';
           FieldByName('Имя компьютера').Value:=eNameComp.Text;
           FieldByName('email\login').Value:=eEmail.Text;
           FieldByName('password').Value:=ePassword.Text;
@@ -105,8 +111,14 @@ begin
           FieldByName('Отчество').Value:=eOt.Text;
           FieldByName('Отделение').Value:=eDepart.Text;
           FieldByName('Должность').Value:=ePost.Text;
-          FieldByName('Телефон').Value:=meTel.Text;
-          FieldByName('IP').Value:=meIP.Text;
+          if meTel.Text<>' -  -  ' then
+            FieldByName('Телефон').Value:=meTel.Text
+          else
+            FieldByName('Телефон').Value:='';
+          if meIP.Text<>'  .  .   .   ' then
+            FieldByName('IP').Value:=meIP.Text
+          else
+            FieldByName('IP').Value:='';
           FieldByName('Имя компьютера').Value:=eNameComp.Text;
           FieldByName('email\login').Value:=eEmail.Text;
           FieldByName('password').Value:=ePassword.Text;
@@ -222,6 +234,7 @@ begin
     NewData
   else
     LoadData;
+  eFam.SetFocus;
 end;
 
 procedure TfNewTel.NewData;

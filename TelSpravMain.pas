@@ -120,10 +120,8 @@ end;
 procedure TfTelSprav.eFIOChange(Sender: TObject);
 begin
   if eFIO.Text<>'' then
-    begin
-      cebFIO.Checked:=true;
-      Filterbase;
-    end
+    cebFIO.Checked:=true;
+  Filterbase;
 end;
 
 procedure TfTelSprav.Filtretion(var str:string);
@@ -134,37 +132,79 @@ begin
     if s='' then
       s:=s+'(Фамилия LIKE ''*'+eFIO.Text+'*'' or Имя LIKE ''*'+eFIO.Text+'*'' or Отчество LIKE ''*'+eFIO.Text+'*'')'
     else
-      s:=s+' and (Фамилия LIKE ''*'+eFIO.Text+'*'' or Имя LIKE ''*'+eFIO.Text+'*'' or Отчество LIKE ''*'+eFIO.Text+'*'')';
+      s:=s+' and (Фамилия LIKE ''*'+eFIO.Text+'*'' or Имя LIKE ''*'+eFIO.Text+'*'' or Отчество LIKE ''*'+eFIO.Text+'*'')'
+  else
+    if (cebFIO.Checked=true) and (eFIO.Text='') then
+      if s='' then
+        s:=s+'(Фамилия LIKE '+#39+#39+' or Имя LIKE '+#39+#39+' or Отчество LIKE '+#39+#39+')'
+      else
+        s:=s+' and (Фамилия LIKE '+#39+#39+' or Имя LIKE '+#39+#39+' or Отчество LIKE '+#39+#39+')';
   if (cebDepart.Checked=true) and (eDepart.Text<>'') then
     if s='' then
       s:=s+'Отделение LIKE ''%'+eDepart.Text+'%'''
     else
-      s:=s+' and Отделение LIKE ''*'+eDepart.Text+'*''';
+      s:=s+' and Отделение LIKE ''*'+eDepart.Text+'*'''
+  else
+    if (cebDepart.Checked=true) and (eDepart.Text='') then
+      if s='' then
+        s:=s+'Отделение LIKE '+#39+#39
+      else
+        s:=s+' and Отделение LIKE '+#39+#39;
   if (cebPost.Checked=true) and (ePost.Text<>'') then
     if s='' then
       s:=s+'Должность LIKE ''*'+ePost.Text+'*'''
     else
-      s:=s+' and Должность LIKE ''*'+ePost.Text+'*''';
+      s:=s+' and Должность LIKE ''*'+ePost.Text+'*'''
+  else
+    if (cebPost.Checked=true) and (ePost.Text='') then
+      if s='' then
+        s:=s+'Должность LIKE '+#39+#39
+      else
+        s:=s+' and Должность LIKE '+#39+#39;
   if (cebTel.Checked=true) and (meTel.Text<>' -  -  ') then
     if s='' then
       s:=s+'Телефон LIKE ''*'+meTel.Text+'*'''
     else
-      s:=s+' and Телефон LIKE ''*'+meTel.Text+'*''';
+      s:=s+' and Телефон LIKE ''*'+meTel.Text+'*'''
+  else
+    if (cebTel.Checked=true) and (meTel.Text=' -  -  ') then
+      if s='' then
+        s:=s+'Телефон LIKE '+#39+#39
+      else
+        s:=s+' and Телефон LIKE '+#39+#39;
   if (cebText.Checked=true) and (eText.Text<>'') then
     if s='' then
       s:=s+'Примечание LIKE ''*'+eText.Text+'*'''
     else
-      s:=s+' and Примечание LIKE ''*'+eText.Text+'*''';
+      s:=s+' and Примечание LIKE ''*'+eText.Text+'*'''
+  else
+    if (cebText.Checked=true) and (eText.Text='') then
+      if s='' then
+        s:=s+'Примечание LIKE '+#39+#39
+      else
+        s:=s+' and Примечание LIKE '+#39+#39;
   if (cebIP.Checked=true) and (meIP.Text<>'  .  .   .   ') then
     if s='' then
       s:=s+'IP LIKE ''*'+meIP.Text+'*'''
     else
-      s:=s+' and IP LIKE ''*'+meIP.Text+'*''';
+      s:=s+' and IP LIKE ''*'+meIP.Text+'*'''
+  else
+    if (cebIP.Checked=true) and (meIP.Text='  .  .   .   ') then
+      if s='' then
+        s:=s+'IP LIKE '+#39+#39
+      else
+        s:=s+' and IP LIKE '+#39+#39;
   if (cebNameComp.Checked=true) and (eNameComp.Text<>'') then
     if s='' then
       s:=s+'[Имя компьютера] LIKE ''*'+eNameComp.Text+'*'''
     else
-      s:=s+' and [Имя компьютера] LIKE ''*'+eNameComp.Text+'*''';
+      s:=s+' and [Имя компьютера] LIKE ''*'+eNameComp.Text+'*'''
+  else
+    if (cebNameComp.Checked=true) and (eNameComp.Text='') then
+      if s='' then
+        s:=s+'[Имя компьютера] LIKE '+#39+#39
+      else
+        s:=s+' and [Имя компьютера] LIKE '+#39+#39;
   str:=str+s;
 end;
 
@@ -186,57 +226,45 @@ end;
 procedure TfTelSprav.eDepartChange(Sender: TObject);
 begin
   if eDepart.Text<>'' then
-    begin
-      cebDepart.Checked:=true;
-      Filterbase;
-    end;
+    cebDepart.Checked:=true;
+  Filterbase;
 end;
 
 procedure TfTelSprav.ePostChange(Sender: TObject);
 begin
   if ePost.Text<>'' then
-    begin
-      cebPost.Checked:=true;
-      Filterbase;
-    end;
+    cebPost.Checked:=true;
+  Filterbase;
 end;
 
 procedure TfTelSprav.meTelChange(Sender: TObject);
 begin
   meTel.Modified:=false;
-  if meTel.Text<>' -  -  ' then
-    begin
-      cebTel.Checked:=true;
-      Filterbase;
-    end;
+  if cebTel.Checked=false then
+    cebTel.Checked:=true;
+  Filterbase;
 end;
 
 procedure TfTelSprav.meIPChange(Sender: TObject);
 begin
   meIP.Modified:=false;
-  if meIP.Text<>'  .  .   .   ' then
-    begin
-      cebIP.Checked:=true;
-      Filterbase;
-    end;
+  if cebIP.Checked=false then
+    cebIP.Checked:=true;
+  Filterbase;
 end;
 
 procedure TfTelSprav.eNameCompChange(Sender: TObject);
 begin
   if eNameComp.Text<>'' then
-    begin
-      cebNameComp.Checked:=true;
-      Filterbase;
-    end;
+    cebNameComp.Checked:=true;
+  Filterbase;
 end;
 
 procedure TfTelSprav.eTextChange(Sender: TObject);
 begin
   if eText.Text<>'' then
-    begin
-      cebText.Checked:=true;
-      Filterbase;
-    end;
+    cebText.Checked:=true;
+  Filterbase;
 end;
 
 procedure TfTelSprav.nDeleteClick(Sender: TObject);
@@ -254,9 +282,8 @@ end;
 procedure TfTelSprav.cebFIOClick(Sender: TObject);
 begin
   if cebFIO.Checked=false then
-    eFIO.Text:=''
-  else
-    Filterbase;
+    eFIO.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebDepartClick(Sender: TObject);
@@ -269,41 +296,36 @@ end;
 procedure TfTelSprav.cebPostClick(Sender: TObject);
 begin
   if cebPost.Checked=false then
-    ePost.Text:=''
-  else
-    Filterbase;
+    ePost.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebTelClick(Sender: TObject);
 begin
   if cebTel.Checked=false then
-    meTel.Text:=''
-  else
-    Filterbase;
+    meTel.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebIPClick(Sender: TObject);
 begin
   if cebIP.Checked=false then
-    meIP.Text:=''
-  else
-    Filterbase;
+    meIP.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebNameCompClick(Sender: TObject);
 begin
   if cebNameComp.Checked=false then
-    eNameComp.Text:=''
-  else
-    Filterbase;
+    eNameComp.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebTextClick(Sender: TObject);
 begin
   if cebText.Checked=false then
-    eText.Text:=''
-  else
-    Filterbase;
+    eText.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.VivodMainTable;
