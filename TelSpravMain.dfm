@@ -1,8 +1,8 @@
 object fTelSprav: TfTelSprav
   Left = 319
   Top = 242
-  Width = 1132
-  Height = 485
+  Width = 1130
+  Height = 519
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = #1058#1077#1083#1077#1092#1086#1085#1085#1099#1081' '#1089#1087#1088#1072#1074#1086#1095#1085#1080#1082
   Color = clBtnFace
@@ -18,7 +18,7 @@ object fTelSprav: TfTelSprav
   PixelsPerInch = 96
   TextHeight = 17
   object lKolZap: TLabel
-    Left = 872
+    Left = 608
     Top = 352
     Width = 5
     Height = 23
@@ -32,7 +32,7 @@ object fTelSprav: TfTelSprav
   object dbgTel: TDBGrid
     Left = 0
     Top = 0
-    Width = 1116
+    Width = 1114
     Height = 337
     Align = alTop
     DataSource = dmTel.dsTel
@@ -223,9 +223,9 @@ object fTelSprav: TfTelSprav
     OnChange = meTelChange
   end
   object eText: TEdit
-    Left = 632
-    Top = 344
-    Width = 177
+    Left = 104
+    Top = 416
+    Width = 169
     Height = 25
     TabOrder = 5
     OnChange = eTextChange
@@ -248,6 +248,8 @@ object fTelSprav: TfTelSprav
     Height = 25
     TabOrder = 7
     OnChange = eNameCompChange
+    OnEnter = eNameCompEnter
+    OnExit = eNameCompExit
   end
   object cebFIO: TCheckBox
     Left = 8
@@ -286,8 +288,8 @@ object fTelSprav: TfTelSprav
     OnClick = cebTelClick
   end
   object cebText: TCheckBox
-    Left = 528
-    Top = 352
+    Left = 8
+    Top = 424
     Width = 97
     Height = 17
     Caption = #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077
@@ -312,10 +314,39 @@ object fTelSprav: TfTelSprav
     TabOrder = 14
     OnClick = cebNameCompClick
   end
+  object rbSort: TRadioGroup
+    Left = 696
+    Top = 344
+    Width = 169
+    Height = 113
+    Caption = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072' '#1087#1086' '
+    Items.Strings = (
+      #1054#1090#1076#1077#1083#1077#1085#1080#1102
+      #1044#1086#1083#1078#1085#1086#1089#1090#1080
+      #1060#1048#1054
+      #1058#1077#1083#1077#1092#1086#1085#1091
+      #1055#1088#1080#1084#1077#1095#1072#1085#1080#1102
+      'IP'
+      #1048#1084#1077#1085#1080' '#1082#1086#1084#1087#1100#1102#1090#1077#1088#1072)
+    TabOrder = 15
+    OnClick = rbSortClick
+  end
+  object rbVU: TRadioGroup
+    Left = 872
+    Top = 344
+    Width = 129
+    Height = 73
+    Caption = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072' '#1087#1086
+    Items.Strings = (
+      #1042#1086#1079#1088#1072#1089#1090#1072#1085#1080#1102
+      #1059#1073#1099#1074#1072#1085#1080#1102)
+    TabOrder = 16
+    OnClick = rbSortClick
+  end
   object mmTel: TMainMenu
     Images = ilTel
-    Left = 1080
-    Top = 376
+    Left = 576
+    Top = 384
     object nFile: TMenuItem
       Caption = #1060#1072#1081#1083
     end
@@ -330,6 +361,7 @@ object fTelSprav: TfTelSprav
       object nEdit: TMenuItem
         Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100' '#1079#1072#1087#1080#1089#1100
         ImageIndex = 2
+        OnClick = nEditClick
       end
       object nDelete: TMenuItem
         Caption = #1059#1076#1072#1083#1080#1090#1100' '#1079#1072#1087#1080#1089#1100
@@ -340,8 +372,8 @@ object fTelSprav: TfTelSprav
     end
   end
   object ilTel: TImageList
-    Left = 984
-    Top = 376
+    Left = 544
+    Top = 384
     Bitmap = {
       494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010

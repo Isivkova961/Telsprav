@@ -56,6 +56,9 @@ type
     procedure cebNameCompClick(Sender: TObject);
     procedure cebTextClick(Sender: TObject);
     procedure VivodMainTable;
+    procedure PerehKlav(int:integer);
+    procedure eNameCompEnter(Sender: TObject);
+    procedure eNameCompExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -120,47 +123,59 @@ end;
 procedure TfTelSprav.eFIOChange(Sender: TObject);
 begin
   if eFIO.Text<>'' then
-    begin
-      cebFIO.Checked:=true;
-      Filterbase;
-    end
+    cebFIO.Checked:=true;
+  Filterbase;
 end;
 
 procedure TfTelSprav.Filtretion(var str:string);
-var s:string;
+var s,st:string;
 begin
   s:='';
-  if (cebFIO.Checked=true) and (eFIO.Text<>'') then
+  if cebFIO.Checked then
     if s='' then
       s:=s+'(Фамилия LIKE ''*'+eFIO.Text+'*'' or Имя LIKE ''*'+eFIO.Text+'*'' or Отчество LIKE ''*'+eFIO.Text+'*'')'
     else
       s:=s+' and (Фамилия LIKE ''*'+eFIO.Text+'*'' or Имя LIKE ''*'+eFIO.Text+'*'' or Отчество LIKE ''*'+eFIO.Text+'*'')';
-  if (cebDepart.Checked=true) and (eDepart.Text<>'') then
+  if cebDepart.Checked then
     if s='' then
       s:=s+'Отделение LIKE ''%'+eDepart.Text+'%'''
     else
       s:=s+' and Отделение LIKE ''*'+eDepart.Text+'*''';
-  if (cebPost.Checked=true) and (ePost.Text<>'') then
+  if cebPost.Checked then
     if s='' then
       s:=s+'Должность LIKE ''*'+ePost.Text+'*'''
     else
       s:=s+' and Должность LIKE ''*'+ePost.Text+'*''';
-  if (cebTel.Checked=true) and (meTel.Text<>' -  -  ') then
-    if s='' then
-      s:=s+'Телефон LIKE ''*'+meTel.Text+'*'''
-    else
-      s:=s+' and Телефон LIKE ''*'+meTel.Text+'*''';
-  if (cebText.Checked=true) and (eText.Text<>'') then
+  if cebTel.Checked then
+    begin
+      st:=meTel.Text;
+      if pos('- ',st)>0 then
+        delete(st,pos('- ',st),length(st));
+      if pos(' ',st)>0 then
+        delete(st,pos(' ',st),length(st));
+      if s='' then
+        s:=s+'Телефон LIKE ''*'+st+'*'''
+      else
+        s:=s+' AND Телефон LIKE ''*'+st+'*''';
+    end;
+  if cebText.Checked then
     if s='' then
       s:=s+'Примечание LIKE ''*'+eText.Text+'*'''
     else
       s:=s+' and Примечание LIKE ''*'+eText.Text+'*''';
-  if (cebIP.Checked=true) and (meIP.Text<>'  .  .   .   ') then
-    if s='' then
-      s:=s+'IP LIKE ''*'+meIP.Text+'*'''
-    else
-      s:=s+' and IP LIKE ''*'+meIP.Text+'*''';
-  if (cebNameComp.Checked=true) and (eNameComp.Text<>'') then
+  if cebIP.Checked then
+    begin
+      st:=meIP.Text;
+      if pos('. ',st)>0 then
+        delete(st,pos('. ',st),length(st));
+      if pos(' ',st)>0 then
+        delete(st,pos(' ',st),length(st));
+      if s='' then
+        s:=s+'IP LIKE ''*'+st+'*'''
+      else
+        s:=s+' and IP LIKE ''*'+st+'*''';
+    end;
+  if cebNameComp.Checked then
     if s='' then
       s:=s+'[Имя компьютера] LIKE ''*'+eNameComp.Text+'*'''
     else
@@ -254,9 +269,8 @@ end;
 procedure TfTelSprav.cebFIOClick(Sender: TObject);
 begin
   if cebFIO.Checked=false then
-    eFIO.Text:=''
-  else
-    Filterbase;
+    eFIO.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebDepartClick(Sender: TObject);
@@ -269,41 +283,36 @@ end;
 procedure TfTelSprav.cebPostClick(Sender: TObject);
 begin
   if cebPost.Checked=false then
-    ePost.Text:=''
-  else
-    Filterbase;
+    ePost.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebTelClick(Sender: TObject);
 begin
   if cebTel.Checked=false then
-    meTel.Text:=''
-  else
-    Filterbase;
+    meTel.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebIPClick(Sender: TObject);
 begin
   if cebIP.Checked=false then
-    meIP.Text:=''
-  else
-    Filterbase;
+    meIP.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebNameCompClick(Sender: TObject);
 begin
   if cebNameComp.Checked=false then
-    eNameComp.Text:=''
-  else
-    Filterbase;
+    eNameComp.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.cebTextClick(Sender: TObject);
 begin
   if cebText.Checked=false then
-    eText.Text:=''
-  else
-    Filterbase;
+    eText.Text:='';
+  Filterbase;
 end;
 
 procedure TfTelSprav.VivodMainTable;
@@ -313,6 +322,34 @@ begin
       adoqTel.SQL.Text:='SELECT * FROM [Телефоны]';
       adoqTel.Open;
     end;
+end;
+
+procedure TfTelSprav.PerehKlav(int:integer);
+Var
+KK : HKL;
+  KBid : Integer;
+Const
+  USKeyboard = 1033;
+  RusKeyboard = 1049;
+begin
+  KK := GetKeyboardLayout(0);
+  KBid := LOWORD(KK);
+  if int=1 then
+  If KBid = USKeyboard Then
+    ActivateKeyboardLayout(HKL_NEXT, 0);
+  if int=2 then
+  If KBid = RusKeyboard Then
+    ActivateKeyboardLayout(HKL_NEXT, 0);
+end;
+
+procedure TfTelSprav.eNameCompEnter(Sender: TObject);
+begin
+  PerehKlav(2);
+end;
+
+procedure TfTelSprav.eNameCompExit(Sender: TObject);
+begin
+  PerehKlav(1);
 end;
 
 end.

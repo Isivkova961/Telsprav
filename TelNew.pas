@@ -239,6 +239,7 @@ end;
 
 procedure TfNewTel.NewData;
 begin
+  fNewTel.Caption:='Добавление нового контакта';
   eFam.Text:='';
   eIm.Text:='';
   eOt.Text:='';
@@ -254,6 +255,7 @@ end;
 
 procedure TfNewTel.LoadData;
 begin
+  fNewTel.Caption:='Изменение контакта';
   with dmTel.adoqTel do
     begin
       eFam.Text:=FieldByName('Фамилия').AsString;
